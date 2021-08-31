@@ -1,6 +1,7 @@
-ruby '3.0.2', :engine => 'ruby', :engine_version => '3.0.2'
 
 source 'https://rubygems.org'
+git_source(:github) {|OysterCard1| "https://github.com/Legal-Dan/OysterCard1" } 
+ruby '2.7.2'
 group :test, :development do   
-    gem "rspec", "~> 3.0.2" 
+    gem "rspec"
 end
