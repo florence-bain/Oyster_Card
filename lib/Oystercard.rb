@@ -1,5 +1,7 @@
-class Oystercard
 
+
+class Oystercard
+  MAXIMUM_BALANCE = 90
   attr_reader :balance 
 
   def initialize
@@ -7,7 +9,7 @@ class Oystercard
   end
   
   def top_up(cash)
-    raise 'maximum exceeded' if @balance + cash >= 90
+    raise 'maximum exceeded: #{MAXIMUM_BALANCE}' if @balance + cash >= MAXIMUM_BALANCE
     @balance += cash
   end 
 
