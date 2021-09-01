@@ -18,7 +18,28 @@ describe Oystercard do
 
   it 'deducts from the balance' do 
     subject.top_up(20)
-  expect{ subject.deduct 3 }.to change{ subject.balance }.by -3
+    expect{ subject.deduct 3 }.to change{ subject.balance }.by -3
   end 
+
+  it{is_expected.to respond_to(:touch_in)}
+  it{is_expected.to respond_to(:touch_out)}
+
+  it 'is initially not in a journey' do
+    expect(subject).not_to be_in_journey
+  end
+  
+ 
+  it 'can touch in' do
+    subject.touch_in
+    expect(subject.in_journey).to eq true 
+  end
+
+  it 'can touch out' do
+    subject.touch_in
+    subject.touch_out
+    expect(subject.in_journey).to eq false
+  end
+
+
 
 end 
