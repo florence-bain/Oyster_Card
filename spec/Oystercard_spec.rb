@@ -17,6 +17,8 @@ describe Oystercard do
   end
   
 describe '#top_up_required' do 
+  let(:station){ double :station}
+
   before(:each) do
     subject = Oystercard.new
     subject.top_up(Oystercard::MAXIMUM_BALANCE)
@@ -32,13 +34,19 @@ describe '#top_up_required' do
  
   it 'can touch in' do
     subject.top_up(Oystercard::MAXIMUM_BALANCE)
-    subject.touch_in
+    subject.touch_in(station)
     expect(subject.in_journey).to eq true
   end
 
   it 'has a minimum balance' do
-    expect{ subject.touch_in }.to raise_error "You do not have enough to travel"
+    expect{ subject.touch_in(station) }.to raise_error "You do not have enough to travel"
   end 
+
+  it 'stores the entry station' do
+    subject.top_up(Oystercard::MAXIMUM_BALANCE)
+    subject.touch_in(station)
+    expect(subject.entry_station).to eq station
+end 
 end 
 
 describe '#touch_out' do
@@ -46,8 +54,7 @@ describe '#touch_out' do
   subject.top_up(Oystercard::MAXIMUM_BALANCE)
   it 'takes a minimum charge from the balance' do
     subject.touch_out
-    expect(subject.in_journey).to eq false
+    expect(subject.in_journey)
   end 
 end 
-
 end 
