@@ -28,14 +28,9 @@ describe '#top_up_required' do
     expect{ subject.deduct 3 }.to change{ subject.balance }.by -3
   end   
 
-  it 'is initially not in a journey' do
-    expect(subject).not_to be_in_journey
-  end
- 
   it 'can touch in' do
     subject.top_up(Oystercard::MAXIMUM_BALANCE)
-    subject.touch_in(station)
-    expect(subject.in_journey).to eq true
+    expect(subject.in_journey)
   end
 
   it 'has a minimum balance' do
