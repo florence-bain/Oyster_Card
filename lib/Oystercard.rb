@@ -34,5 +34,9 @@ class Oystercard
     deduct(MINIMUM_BALANCE)
     @in_journey = false
   end
+
+  private 
+
+  '#deduct'
   
 end

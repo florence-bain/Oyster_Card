@@ -31,9 +31,8 @@ describe '#top_up_required' do
   end
  
   it 'can touch in' do
-    subject.top_up(5)
+    subject.top_up(Oystercard::MAXIMUM_BALANCE)
     subject.touch_in
-    subject.in_journey
     expect(subject.in_journey).to eq true
   end
 
@@ -44,11 +43,9 @@ end
 
 describe '#touch_out' do
   subject = Oystercard.new
-  subject.top_up(5)
-  subject.touch_in
-  it 'takes a minimum charge from the balance' do 
-  expect{subject.touch_out}.to change{ subject.balance }.by(-Oystercard::MINIMUM_BALANCE)
-  subject.touch_out
+  subject.top_up(Oystercard::MAXIMUM_BALANCE)
+  it 'takes a minimum charge from the balance' do
+    subject.touch_out
     expect(subject.in_journey).to eq false
   end 
 end 
