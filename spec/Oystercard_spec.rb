@@ -50,7 +50,6 @@ describe Oystercard do
     let(:exit_station) { double :station }
     let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
 
-
       it 'stores entry station' do
         subject.top_up(Oystercard::MAXIMUM_BALANCE)
         subject.touch_in(station)
@@ -68,7 +67,6 @@ describe Oystercard do
         expect(subject.journeys).to be_empty
       end 
 
-      # let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
       it 'stores a journey' do
         subject.top_up(Oystercard::MAXIMUM_BALANCE)
         subject.touch_in(entry_station)
@@ -79,13 +77,4 @@ describe Oystercard do
   end 
 
 end 
-# describe '#touch_out' do
-#   let(:exit_station) { double :station }
-#   subject = Oystercard.new
-#   subject.top_up(Oystercard::MAXIMUM_BALANCE)
-#     it 'takes a minimum charge from the balance' do
-#     subject.touch_out(exit_station)
-#     expect(subject.in_journey)
-#     end 
-# end 
 

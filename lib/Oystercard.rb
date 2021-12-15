@@ -36,7 +36,6 @@ class Oystercard
     deduct(MINIMUM_BALANCE)
     @exit_station = station
     @journeys << { entry_station: @entry_station, exit_station: exit_station}
-    @entry_station = nil
   end
 
   private 
