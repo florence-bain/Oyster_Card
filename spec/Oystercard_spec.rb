@@ -48,6 +48,8 @@ describe Oystercard do
     let(:station){ double :station}
     let(:entry_station) { double :station }
     let(:exit_station) { double :station }
+    let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
+
 
       it 'stores entry station' do
         subject.top_up(Oystercard::MAXIMUM_BALANCE)
@@ -60,6 +62,18 @@ describe Oystercard do
         subject.touch_in(entry_station)
         subject.touch_out(exit_station)
         expect(subject.exit_station).to eq exit_station
+      end 
+
+      it 'stores empty list of stations by default' do 
+        expect(subject.journeys).to be_empty
+      end 
+
+      # let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
+      it 'stores a journey' do
+        subject.top_up(Oystercard::MAXIMUM_BALANCE)
+        subject.touch_in(entry_station)
+        subject.touch_out(exit_station)
+        expect(subject.journeys).to include journey
       end 
     end 
   end 
